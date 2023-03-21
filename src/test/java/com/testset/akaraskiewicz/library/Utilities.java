@@ -23,20 +23,20 @@ public class Utilities {
     @BeforeMethod
     public void appiumConfig() throws MalformedURLException {
         //define Appium service
-        service = new AppiumServiceBuilder().withAppiumJS(new File("//usr//local//lib//node_modules//appium//build//lib//main.js"))
-                .withIPAddress("127.0.0.1")
-                .usingPort(4723)
+        service = new AppiumServiceBuilder().withAppiumJS(new File(Constants.APPIUM_PATH))
+                .withIPAddress(Constants.APPIUM_SERVER_ADDRESS)
+                .usingPort(Constants.APPIUM_SERVER_PORT)
                 .build();
         //start the service
         service.start();
 
         //UIAutomatior options
         UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("FirstEmulator");
-        options.setApp("//Users//AgataKaraskiewicz//GitProjects//AppiumJavaTestAutomation//src//test//java//resources//ApiDemos-debug.apk");
+        options.setDeviceName(Constants.ANDROID_EMULATOR_NAME);
+        options.setApp(Constants.APP_PATH);
 
         //object for AndroidDriver
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+        driver = new AndroidDriver(new URL(Constants.ANDROID_DRIVER_URL), options);
 
         //implicit wait... for now.
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
