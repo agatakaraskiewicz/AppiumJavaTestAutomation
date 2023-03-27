@@ -50,6 +50,7 @@ public class AppiumBasicsAndroid extends Utilities {
         driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Views']")).click();
 
         //UIAutomator tool to do that
+        //TO DO -> extract this method to Utils so it could be reused
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));"));
         Assert.assertTrue(driver.findElement(AppiumBy.accessibilityId("WebView")).isDisplayed());
 
