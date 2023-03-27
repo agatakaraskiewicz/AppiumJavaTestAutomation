@@ -79,4 +79,19 @@ public class AppiumBasicsAndroid extends Utilities {
         Assert.assertFalse(Boolean.parseBoolean(firstImage.getAttribute("focusable")));
         Assert.assertTrue(Boolean.parseBoolean(secondImage.getAttribute("focusable")));
     }
+
+    @Test
+    public void dragAndDropTest() {
+        driver.findElement(By.xpath("//android.widget.TextView[@content-desc='Views']")).click();
+
+        //go to the Drag and Drop section and move 1st circle to the 2nd one
+        driver.findElement(AppiumBy.accessibilityId("Drag and Drop")).click();
+
+        WebElement sourceDot = driver.findElement(By.id("io.appium.android.apis:id/drag_dot_1"));
+        dragNDrop(sourceDot, 840, 740);
+
+        //check if the 'Dropped!' text appeared
+        String resultOfDragNDrop = driver.findElement(By.id("io.appium.android.apis:id/drag_result_text")).getText();
+        Assert.assertEquals(resultOfDragNDrop, "Dropped!");
+    }
 }

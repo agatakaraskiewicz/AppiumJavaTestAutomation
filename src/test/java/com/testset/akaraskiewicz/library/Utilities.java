@@ -30,7 +30,7 @@ public class Utilities {
         //start the service
         service.start();
 
-        //UIAutomatior options
+        //UIAutomator options
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName(Constants.ANDROID_EMULATOR_NAME);
         options.setApp(Constants.APP_PATH);
@@ -67,6 +67,14 @@ public class Utilities {
                 "elementId", ((RemoteWebElement)elementToStartWith).getId(),
                 "direction", whichTurn,
                 "percent", 0.75
+        ));
+    }
+
+    public void dragNDrop(WebElement draggedElement, int endX, int endY) {
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", ((RemoteWebElement) draggedElement).getId(),
+                "endX", endX,
+                "endY", endY
         ));
     }
 
