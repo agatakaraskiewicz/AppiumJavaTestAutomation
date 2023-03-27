@@ -1,7 +1,6 @@
 package com.testset.akaraskiewicz.library;
 
 import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -43,15 +42,6 @@ public class Utilities {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @BeforeMethod (onlyForGroups = "AlertDialogs")
-    public void alertDialogsSetup() throws MalformedURLException {
-        appiumConfig();
-        System.out.println("alertDialogSetupDone");
-
-        //go to the Alert Dialogs
-        driver.findElement(AppiumBy.accessibilityId("App")).click();
-        driver.findElement(AppiumBy.accessibilityId("Alert Dialogs")).click();
-    }
 
     public void longPressAction(WebElement elementToBeLongPressed) {
         ((JavascriptExecutor)driver).executeScript("mobile: longClickGesture",
